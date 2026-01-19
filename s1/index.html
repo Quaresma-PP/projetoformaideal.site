@@ -510,23 +510,23 @@ src="https://www.facebook.com/tr?id=1559800362001223&ev=PageView&noscript=1"
                             <img src="images/c6.png" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
                         </div>
                     </div>
-
+                    
                     <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
-                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
-                            <img src="images/c7.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
-                            </div>
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c7.jpeg" alt="Depoimento 7" class="w-full h-auto rounded-lg object-contain">
+                        </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
-                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
-                            <img src="images/c8.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
-                            </div>
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c8.jpeg" alt="Depoimento 8" class="w-full h-auto rounded-lg object-contain">
+                        </div>
                     </div>
 
                     <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
-                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
-                            <img src="images/c9.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
-                            </div>
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c9.jpeg" alt="Depoimento 9" class="w-full h-auto rounded-lg object-contain">
+                        </div>
                     </div>
 
                 </div>
@@ -544,19 +544,41 @@ src="https://www.facebook.com/tr?id=1559800362001223&ev=PageView&noscript=1"
                 const tNext = document.getElementById('nextTestimonial');
 
                 if(tTrack && tPrev && tNext) {
+                    
+                    // Função para calcular o tamanho exato do card + gap
+                    function getScrollAmount() {
+                        const card = tTrack.querySelector('div'); // Pega o primeiro card
+                        if (!card) return 300; // Valor padrão de segurança
+                        // Largura do card + gap de 24px (gap-6)
+                        return card.offsetWidth + 24; 
+                    }
+
                     tPrev.addEventListener('click', () => {
-                        // Rola a largura de um card (320px) + gap (24px) = aprox 350
-                        tTrack.scrollBy({ left: -350, behavior: 'smooth' });
+                        const amount = getScrollAmount();
+                        
+                        // Lógica de Loop: Se estiver no começo (scrollLeft <= 0), vai pro final
+                        if (tTrack.scrollLeft <= 10) { 
+                            tTrack.scrollTo({ left: tTrack.scrollWidth, behavior: 'smooth' });
+                        } else {
+                            tTrack.scrollBy({ left: -amount, behavior: 'smooth' });
+                        }
                     });
 
                     tNext.addEventListener('click', () => {
-                        tTrack.scrollBy({ left: 350, behavior: 'smooth' });
+                        const amount = getScrollAmount();
+                        
+                        // Lógica de Loop: Se a rolagem atual + largura visível >= largura total, vai pro começo
+                        // Usamos um buffer de 10px para garantir
+                        if (tTrack.scrollLeft + tTrack.clientWidth >= tTrack.scrollWidth - 10) {
+                            tTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            tTrack.scrollBy({ left: amount, behavior: 'smooth' });
+                        }
                     });
                 }
             });
         </script>
     </section>
-
     <section id="oferta" class="py-12 md:py-20 px-4 bg-brand-olive">
         <div class="max-w-3xl mx-auto bg-brand-cream rounded-3xl shadow-2xl border-2 border-brand-orange overflow-hidden relative">
             
@@ -583,7 +605,7 @@ src="https://www.facebook.com/tr?id=1559800362001223&ev=PageView&noscript=1"
                     
                     <div class="flex flex-col items-center justify-center">
                         <p class="text-5xl md:text-6xl font-black text-brand-orange tracking-tighter leading-none mb-1">
-                            9x de R$ 6,56*
+                            9x de R$ 6,56
                         </p>
                     </div>
 
@@ -842,4 +864,5 @@ src="https://www.facebook.com/tr?id=1559800362001223&ev=PageView&noscript=1"
 </body>
 
 </html>
+
 
