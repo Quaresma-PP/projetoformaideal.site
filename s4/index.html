@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200 Cafés da Manhã de Nutri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cream: '#fff7e7',      // Fundo claro
+                            olive: '#595d42',      // Verde/Marrom médio
+                            darkOlive: '#2f3125',  // Fundo escuro bloco 4
+                            brown: '#4E342E',      // Texto bloco 1
+                            orange: '#ff6a29',     // Botões
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Remove a barra de rolagem padrão para um visual mais limpo */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Remove o marcador padrão do details/summary */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 overflow-x-hidden">
+
+   <header class="py-12 md:py-24 px-4 text-center bg-brand-cream text-brand-brown overflow-hidden">
+    <div class="max-w-6xl mx-auto flex flex-col items-center">
+        
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-black mb-6 leading-tight uppercase tracking-tight">
+            200 CAFÉS DA MANHÃ<br>
+            DE NUTRI COM SABOR
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl mb-10 max-w-5xl mx-auto font-medium leading-relaxed md:leading-tight md:whitespace-nowrap px-2">
+            Receitas de baixas calorias criadas pela nutri Camila Moura, com sabor delicioso de verdade
+        </p>
+
+        <div id="carouselContainer" class="relative w-full max-w-sm md:max-w-5xl mx-auto mb-12 group rounded-2xl shadow-xl bg-white">
+            
+            <button id="prevBtn" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-brand-orange/90 hover:bg-brand-orange text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 md:opacity-100 cursor-pointer hover:scale-110">
+                <i class="fas fa-chevron-left text-lg md:text-xl"></i>
+            </button>
+
+            <div id="carouselTrack" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth items-center">
+                
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p1.jpeg" alt="Receita 1" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p2.jpeg" alt="Receita 2" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p3.jpeg" alt="Receita 3" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p4.jpeg" alt="Receita 4" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p5.jpeg" alt="Receita 5" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p6.jpeg" alt="Receita 6" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <div class="snap-center shrink-0 w-full md:w-80 aspect-square relative overflow-hidden bg-gray-100">
+                    <img src="images/p7.jpeg" alt="Receita 7" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                
+            </div>
+
+            <button id="nextBtn" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-brand-orange/90 hover:bg-brand-orange text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 md:opacity-100 cursor-pointer hover:scale-110">
+                <i class="fas fa-chevron-right text-lg md:text-xl"></i>
+            </button>
+        </div>
+
+        <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 transition-all text-white font-bold py-4 px-12 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 uppercase tracking-wide">
+            Quero as Receitas
+        </a>
+    </div>
+</header>
+
+<section class="py-16 md:py-20 bg-brand-olive text-brand-cream">
+    <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 md:mb-12 uppercase tracking-wide">O que você vai receber</h2>
+        
+        <div class="flex justify-center items-center">
+            <div class="bg-white/10 p-6 md:p-8 rounded-2xl shadow-sm border border-white/10 backdrop-blur-sm max-w-2xl">
+                <ul class="space-y-5 text-base md:text-lg">
+                    <li class="flex items-start"><i class="fas fa-utensils text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Receitas de até <strong>350 calorias</strong></span></li>
+                    <li class="flex items-start"><i class="fas fa-lemon text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Com sabores deliciosos de verdade</span></li>
+                    <li class="flex items-start"><i class="fas fa-carrot text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Com proteínas e vitaminas essenciais</span></li>
+                    <li class="flex items-start"><i class="fas fa-stopwatch text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Prontas em <strong>15 minutos</strong></span></li>
+                    <li class="flex items-start"><i class="fas fa-shopping-basket text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Ingredientes comuns que você tem em casa</span></li>
+                    <li class="flex items-start"><i class="fas fa-blender text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Use apenas liquidificador e frigideira</span></li>
+                    <li class="flex items-start"><i class="fas fa-book-open text-brand-cream mt-1 mr-4 shrink-0"></i> <span>Passo a passo de preparo (3 a 10 min)</span></li>
+                </ul>
+                <div class="mt-8 text-center">
+                    <a href="#oferta" class="w-full block bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors uppercase shadow-md">
+                        Quero as Receitas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="py-16 px-4 bg-brand-cream text-brand-olive">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 md:mb-12 uppercase">Veja o que você vai aprender</h2>
+            
+            <div class="flex flex-col gap-4">
+                
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f1.png" alt="Café de Frigideira" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Café de Frigideira</h3>
+                        <p class="text-sm opacity-90 mb-2">Com Ovos e Frios</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">10 min / 195 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f2.png" alt="Pizza Rápida" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Pizza Rápida</h3>
+                        <p class="text-sm opacity-90 mb-2">3 Ingredientes</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">207 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f3.png" alt="Panqueca Fit" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Panqueca Fit</h3>
+                        <p class="text-sm opacity-90 mb-2">De Banana</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">7 min / 183 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f4.png" alt="Omelete Tostada" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Omelete Tostada</h3>
+                        <p class="text-sm opacity-90 mb-2">De Frios</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">9 min / 125 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f5.png" alt="Salada de Frutas" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Salada de Frutas</h3>
+                        <p class="text-sm opacity-90 mb-2">Digestivas</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">6 frutas / 120 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f6.png" alt="Pão Cremoso" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Pão Cremoso</h3>
+                        <p class="text-sm opacity-90 mb-2">Gratinado</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">8 min / 170 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f7.png" alt="Shakes Detox" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Shakes Detox</h3>
+                        <p class="text-sm opacity-90 mb-2">Saborosos</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">6 min / 120 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f8.png" alt="Bolo de Banana" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Bolo de Banana</h3>
+                        <p class="text-sm opacity-90 mb-2">De Caneca</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">3 ingred. / 175 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f9.png" alt="Sanduíche Proteico" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Sanduíche Proteico</h3>
+                        <p class="text-sm opacity-90 mb-2">De Frigideira</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">10 min / 180 cal</div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-olive text-brand-cream rounded-xl p-4 flex items-center gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-default">
+                    <img src="images/f10.png" alt="Brownie de Frigideira" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shrink-0 border-2 border-brand-orange/50">
+                    <div class="flex-1">
+                        <h3 class="font-bold text-base md:text-lg uppercase text-brand-cream">Brownie de Frigideira</h3>
+                        <p class="text-sm opacity-90 mb-2">(3 Ingredientes)</p>
+                        <div class="text-xs font-bold bg-brand-orange text-white px-2 py-1 inline-block rounded">10 min / 176 cal</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-6">
+                <div class="bg-brand-cream border-2 border-dashed border-brand-olive rounded-xl p-6 text-center hover:bg-brand-olive/5 transition-colors">
+                    <h3 class="font-bold text-3xl md:text-4xl text-brand-olive mb-1">+200</h3>
+                    <p class="text-base md:text-lg text-brand-olive font-semibold uppercase">Outras Opções da Nutri!</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10 md:mt-12">
+                <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg transition-colors uppercase">
+                    Quero as Receitas Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+<section class="py-16 md:py-20 bg-brand-darkOlive text-brand-cream">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            
+            <div class="flex flex-col items-center">
+                <div class="mb-8 w-full">
+                    <img src="images/x1.png" alt="Camila Moura" class="w-64 h-64 md:w-72 md:h-72 object-cover rounded-2xl mx-auto mb-8 shadow-2xl border-4 border-brand-olive">
+                    
+                    <h2 class="text-2xl md:text-4xl font-bold mb-6 text-brand-cream uppercase leading-snug">
+                        CARDÁPIO FEITO<br>
+                        PELA NUTRICIONISTA<br>
+                        CAMILA MOURA
+                    </h2>
+                </div>
+                
+                <p class="text-brand-cream/90 text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+                    Camila Moura, nutricionista especializada em alimentação funcional, criou mais de 200 receitas de cafés da manhã saudáveis, deliciosos de verdade e que ficam prontos em até 10 minutos. Cada receita foi pensada para oferecer todos os nutrientes que seu corpo precisa logo no início do dia, com foco no sabor e na praticidade
+                </p>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-brand-olive">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 text-brand-cream uppercase leading-snug">
+                Receba ainda <span class="text-brand-orange block md:inline">+ 4 Bônus Exclusivos</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-brand-cream p-5 rounded-xl shadow-md text-center relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 z-10 rounded-bl-lg">GRÁTIS</div>
+                    <img src="images/g5.png" alt="Sobremesas Zero Açúcar" class="w-full h-40 object-cover rounded-lg mb-4 shadow-sm">
+                    <h3 class="font-bold text-brand-olive uppercase text-sm">BÔNUS 1:</h3>
+                    <p class="text-sm text-brand-olive font-bold mb-1">200 Sobremesas Zero Açúcar</p>
+                    <p class="text-xs text-gray-400 line-through">R$29,00</p>
+                    <p class="text-sm font-black text-brand-orange mt-1">HOJE É GRÁTIS!</p>
+                </div>
+
+                <div class="bg-brand-cream p-5 rounded-xl shadow-md text-center relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 z-10 rounded-bl-lg">GRÁTIS</div>
+                    <img src="images/g6.png" alt="Marmitas Fit" class="w-full h-40 object-cover rounded-lg mb-4 shadow-sm">
+                    <h3 class="font-bold text-brand-olive uppercase text-sm">BÔNUS 2:</h3>
+                    <p class="text-sm text-brand-olive font-bold mb-1">30 Marmitas Fit P/ Congelar</p>
+                    <p class="text-xs text-gray-400 line-through">R$15,00</p>
+                    <p class="text-sm font-black text-brand-orange mt-1">HOJE É GRÁTIS!</p>
+                </div>
+
+                <div class="bg-brand-cream p-5 rounded-xl shadow-md text-center relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 z-10 rounded-bl-lg">GRÁTIS</div>
+                    <img src="images/g7.png" alt="Sucos Detox" class="w-full h-40 object-cover rounded-lg mb-4 shadow-sm">
+                    <h3 class="font-bold text-brand-olive uppercase text-sm">BÔNUS 3:</h3>
+                    <p class="text-sm text-brand-olive font-bold mb-1">60 Sucos Detox</p>
+                    <p class="text-xs text-gray-400 line-through">R$29,00</p>
+                    <p class="text-sm font-black text-brand-orange mt-1">HOJE É GRÁTIS!</p>
+                </div>
+
+                <div class="bg-brand-cream p-5 rounded-xl shadow-md text-center relative overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-[10px] font-bold px-3 py-1 z-10 rounded-bl-lg">GRÁTIS</div>
+                    <img src="images/g8.png" alt="App de Exercícios" class="w-full h-40 object-cover rounded-lg mb-4 shadow-sm">
+                    <h3 class="font-bold text-brand-olive uppercase text-sm">BÔNUS 4:</h3>
+                    <p class="text-sm text-brand-olive font-bold mb-1">App de Exercícios e Pilates</p>
+                    <p class="text-xs text-gray-400 line-through">R$197,00</p>
+                    <p class="text-sm font-black text-brand-orange mt-1">HOJE É GRÁTIS!</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all uppercase">
+                    Quero garantir meus bônus
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-cream text-brand-olive px-6">
+        <div class="max-w-3xl mx-auto">
+            <h3 class="text-2xl font-bold mb-8 text-center uppercase">É perfeito para você que:</h3>
+            <ul class="space-y-4">
+                <li class="flex items-start bg-white p-4 md:p-5 rounded-xl shadow-sm border border-brand-olive/5 transition-transform hover:scale-[1.01]">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-xl shrink-0"></i> 
+                    <span class="font-medium text-gray-700">Não sabe o que comer ao acordar e cai nas opções erradas.</span>
+                </li>
+                <li class="flex items-start bg-white p-4 md:p-5 rounded-xl shadow-sm border border-brand-olive/5 transition-transform hover:scale-[1.01]">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-xl shrink-0"></i> 
+                    <span class="font-medium text-gray-700">Luta contra a balança, mas não consegue seguir dietas que te deixam com fome.</span>
+                </li>
+                <li class="flex items-start bg-white p-4 md:p-5 rounded-xl shadow-sm border border-brand-olive/5 transition-transform hover:scale-[1.01]">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-xl shrink-0"></i> 
+                    <span class="font-medium text-gray-700">Acha que comida saudável é sem graça e sente falta de sabor nas refeições.</span>
+                </li>
+                <li class="flex items-start bg-white p-4 md:p-5 rounded-xl shadow-sm border border-brand-olive/5 transition-transform hover:scale-[1.01]">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-xl shrink-0"></i> 
+                    <span class="font-medium text-gray-700">Tem a rotina corrida e precisa de um café da manhã pronto em menos de 5 minutos.</span>
+                </li>
+                <li class="flex items-start bg-white p-4 md:p-5 rounded-xl shadow-sm border border-brand-olive/5 transition-transform hover:scale-[1.01]">
+                    <i class="fas fa-times-circle text-red-500 mt-1 mr-4 text-xl shrink-0"></i> 
+                    <span class="font-medium text-gray-700">Acorda sem energia e sente que falta "combustível" para encarar o dia.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-olive text-brand-cream px-6">
+        <div class="max-w-3xl mx-auto">
+            <h3 class="text-2xl font-bold mb-8 text-brand-cream text-center uppercase">Veja as vantagens:</h3>
+            <ul class="space-y-4 mb-10 text-lg">
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Cardápio criado por uma nutricionista</span></li>
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Mais de 200 opções saudáveis</span></li>
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Baixíssimas em calorias</span></li>
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Sabor novo todos os dias sem enjoar</span></li>
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Feitas em menos de 15 minutos</span></li>
+                <li class="flex items-start border-b border-brand-cream/10 pb-4"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Não precisa de utensílios profissionais</span></li>
+                <li class="flex items-start"><i class="fas fa-check text-brand-orange mt-1 mr-4 text-xl shrink-0"></i> <span class="font-medium">Nutrição completa para começar o dia</span></li>
+            </ul>
+
+            <div class="text-center">
+                <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all uppercase">
+                    Quero as Receitas
+                </a>
+            </div>
+        </div>
+    </section>
+
+<section class="py-16 bg-brand-cream text-brand-olive">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 uppercase">Depoimentos Reais Todos os Dias:</h2>
+            
+            <div id="testimonialContainer" class="relative w-full max-w-6xl mx-auto group">
+                
+                <button id="prevTestimonial" class="absolute left-0 md:-left-12 top-1/2 -translate-y-1/2 z-20 bg-brand-olive/90 text-brand-cream w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer hover:bg-brand-orange hover:text-white hover:scale-110">
+                    <i class="fas fa-chevron-left text-lg"></i>
+                </button>
+
+                <div id="testimonialTrack" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 py-8 px-4 scroll-smooth items-start">
+                    
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c1.png" alt="Depoimento 1" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c2.jpeg" alt="Depoimento 2" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c3.png" alt="Depoimento 3" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c4.jpeg" alt="Depoimento 4" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c5.png" alt="Depoimento 5" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full">
+                            <img src="images/c6.png" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
+                            <img src="images/c7.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
+                            </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
+                            <img src="images/c8.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
+                            </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-[85vw] md:w-80 flex-none transition-transform hover:-translate-y-2 duration-300">
+                        <div class="bg-white p-3 rounded-xl shadow-lg border border-gray-100 h-full flex items-center justify-center min-h-[300px]">
+                            <img src="images/c9.jpeg" alt="Depoimento 6" class="w-full h-auto rounded-lg object-contain">
+                            </div>
+                    </div>
+
+                </div>
+
+                <button id="nextTestimonial" class="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 z-20 bg-brand-olive/90 text-brand-cream w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full shadow-lg transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer hover:bg-brand-orange hover:text-white hover:scale-110">
+                    <i class="fas fa-chevron-right text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const tTrack = document.getElementById('testimonialTrack');
+                const tPrev = document.getElementById('prevTestimonial');
+                const tNext = document.getElementById('nextTestimonial');
+
+                if(tTrack && tPrev && tNext) {
+                    tPrev.addEventListener('click', () => {
+                        // Rola a largura de um card (320px) + gap (24px) = aprox 350
+                        tTrack.scrollBy({ left: -350, behavior: 'smooth' });
+                    });
+
+                    tNext.addEventListener('click', () => {
+                        tTrack.scrollBy({ left: 350, behavior: 'smooth' });
+                    });
+                }
+            });
+        </script>
+    </section>
+
+    <section id="oferta" class="py-12 md:py-20 px-4 bg-brand-olive">
+        <div class="max-w-3xl mx-auto bg-brand-cream rounded-3xl shadow-2xl border-2 border-brand-orange overflow-hidden relative">
+            
+            <div class="p-6 md:p-12 text-center">
+                
+                <div class="mb-6 flex justify-center">
+                    <img src="images/Captura de tela 2026-01-18 112126.png" alt="200 Cafés da Manhã Digital" class="w-3/4 md:w-full max-w-sm mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-xl">
+                </div>
+
+                <h3 class="text-2xl md:text-3xl font-black text-brand-olive mb-1 leading-tight tracking-tight">200 CAFÉS DA MANHÃ DE NUTRI®</h3>
+                <p class="text-brand-olive/80 mb-6 font-semibold text-sm md:text-base tracking-widest">(COM SABOR)</p>
+                
+                <div class="bg-white rounded-xl p-4 md:p-6 mb-8 text-left inline-block w-full max-w-md border border-brand-olive/10 shadow-inner">
+                    <ul class="space-y-2 text-xs md:text-sm text-brand-olive font-bold">
+                        <li class="flex items-center"><i class="fas fa-plus text-brand-orange mr-3"></i> Marmitas Fit</li>
+                        <li class="flex items-center"><i class="fas fa-plus text-brand-orange mr-3"></i> Sobremesas Sem Açúcar</li>
+                        <li class="flex items-center"><i class="fas fa-plus text-brand-orange mr-3"></i> Sucos Detox</li>
+                        <li class="flex items-center"><i class="fas fa-plus text-brand-orange mr-3"></i> App de Exercícios e Pilates</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8 text-brand-olive">
+                    <p class="line-through text-sm md:text-lg opacity-60 font-medium mb-1">De R$127,00 ... por apenas</p>
+                    
+                    <div class="flex flex-col items-center justify-center">
+                        <p class="text-5xl md:text-6xl font-black text-brand-orange tracking-tighter leading-none mb-1">
+                            3x de R$ 7,10*
+                        </p>
+                    </div>
+
+                    <p class="text-sm md:text-base font-bold opacity-80 mt-2">
+                        Ou <span class="text-brand-olive">R$ 19,90</span> à vista
+                    </p>
+                </div>
+
+                <a href="https://checkout.ticto.app/OF7A4FD4C"><button class="w-full md:w-auto bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-xl text-lg md:text-xl shadow-xl transition-transform transform hover:scale-105 mb-4 uppercase">
+                    Quero as Receitas
+                </button></a>
+                
+                <div class="flex justify-center mt-2">
+                    <p class="inline-flex items-center justify-center text-[10px] md:text-xs text-red-600 font-bold bg-red-50 border border-red-100 rounded-full px-3 py-1">
+                        <i class="fas fa-clock mr-1.5 animate-pulse"></i> VALOR PROMOCIONAL EXPIRA HOJE ÀS 23:59
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-black/5 p-4 flex flex-wrap md:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-brand-olive/70 font-semibold border-t border-black/5">
+                <div class="flex items-center"><i class="fas fa-shield-alt text-brand-orange text-sm mr-1.5"></i> Garantia 30 dias</div>
+                <div class="flex items-center"><i class="fas fa-lock text-brand-orange text-sm mr-1.5"></i> Compra Segura</div>
+                <div class="flex items-center"><i class="fas fa-bolt text-brand-orange text-sm mr-1.5"></i> Acesso Imediato</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-brand-cream text-center text-brand-olive">
+        <div class="max-w-2xl mx-auto">
+            
+            <img src="images/Captura de tela 2026-01-18 113019.png" alt="Selo de Garantia de 30 Dias" class="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 object-contain mix-blend-multiply opacity-90">
+            
+            <h3 class="text-2xl font-bold mb-4 uppercase">Garantia de Teste por 30 Dias:</h3>
+            <p class="mb-0 text-base md:text-lg leading-relaxed text-gray-700">
+                Teste por 30 dias e se não gostar de nenhuma receita, eu devolvo seu dinheiro e você pode ficar com o produto e todos os bônus. O risco é todo meu.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-brand-olive text-brand-olive">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-brand-cream uppercase">Como irei receber as receitas?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-brand-cream p-6 rounded-xl shadow-lg text-brand-olive hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-envelope-open-text text-4xl text-brand-orange mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">E-mail e WhatsApp</h3>
+                    <p class="text-sm opacity-90 leading-snug">Você recebe o acesso imediato direto no seu E-mail e também no WhatsApp.</p>
+                </div>
+                
+                <div class="bg-brand-cream p-6 rounded-xl shadow-lg text-brand-olive hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-mobile-alt text-4xl text-brand-orange mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Qualquer Dispositivo</h3>
+                    <p class="text-sm opacity-90 leading-snug">Pode imprimir ou, se preferir, ver no celular, computador ou tablet.</p>
+                </div>
+
+                <div class="bg-brand-cream p-6 rounded-xl shadow-lg text-brand-olive hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-sync-alt text-4xl text-brand-orange mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Atualizações Mensais</h3>
+                    <p class="text-sm opacity-90 leading-snug">Vou te enviar novas receitas mensalmente para você sempre ter novidades.</p>
+                </div>
+            </div>
+
+            <p class="text-brand-cream italic mb-10 opacity-80 text-sm">
+                <i class="fas fa-shield-alt mr-2"></i>E caso você perca a receita, eu te envio novamente sem custo.
+            </p>
+
+            <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all uppercase">
+                Quero as Receitas
+            </a>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-cream text-brand-cream px-4 md:px-6">
+        <div class="max-w-4xl mx-auto border-2 border-brand-orange rounded-3xl p-6 md:p-10 relative bg-brand-olive shadow-2xl mt-4">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-max max-w-[90%] bg-brand-orange text-white font-black px-6 py-2 rounded-full shadow-lg uppercase text-xs md:text-sm tracking-wide text-center">
+                Apenas para os 10 primeiros
+            </div>
+
+            <div class="text-center mt-6">
+                <h2 class="text-2xl md:text-4xl font-bold mb-6 text-brand-orange uppercase drop-shadow-sm">Presente Exclusivo VIP</h2>
+                <p class="text-base md:text-xl text-white mb-8 leading-relaxed">
+                    Se você for uma das <strong>10 primeiras pessoas</strong> a comprar as receitas agora, eu vou te presentear com um <strong>acompanhamento VIP por 60 dias</strong>.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center bg-brand-darkOlive p-6 md:p-8 rounded-2xl mb-8 border border-brand-orange/20">
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-brand-orange uppercase tracking-wide">Funciona assim:</h3>
+                    <ul class="space-y-4 text-gray-200 text-sm md:text-base">
+                        <li class="flex items-start"><i class="fas fa-video text-brand-orange mt-1 mr-3 shrink-0"></i> <span>Chamadas via <strong>ZOOM</strong> para eu entender sua rotina e montar o melhor plano.</span></li>
+                        <li class="flex items-start"><i class="fab fa-whatsapp text-brand-orange mt-1 mr-3 shrink-0"></i> <span>Acesso ao meu <strong>WhatsApp pessoal</strong> para tirar dúvidas quando quiser.</span></li>
+                        <li class="flex items-start"><i class="fas fa-star text-brand-orange mt-1 mr-3 shrink-0"></i> <span>Criação de <strong>receitas exclusivas</strong> com os ingredientes que você mais gosta.</span></li>
+                    </ul>
+                </div>
+                <div class="text-center border-t md:border-t-0 md:border-l border-gray-600 pt-6 md:pt-0 md:pl-6">
+                    <p class="text-gray-400 text-xs md:text-sm mb-2 uppercase tracking-widest">Valor normal:</p>
+                    <p class="text-xl md:text-2xl text-gray-500 line-through mb-2 font-mono">R$ 2.000,00</p>
+                    <p class="text-xs md:text-sm text-gray-300 uppercase tracking-widest">Agindo agora:</p>
+                    <p class="text-4xl md:text-5xl font-black text-brand-orange mt-2 animate-pulse">DE GRAÇA</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-12 rounded-lg text-lg shadow-lg transition-colors uppercase">
+                    QUERO AS RECEITAS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 bg-brand-olive text-brand-cream">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 uppercase">Dúvidas Frequentes</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">As receitas são gostosas de verdade?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Sim! O maior foco da nutri Patricia foi unir saúde com sabor de verdade. Nada de comida sem graça, são receitas realmente gostosas, testadas e aprovadas.
+                    </div>
+                </details>
+
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">São receitas saudáveis?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Todas são saudáveis, equilibradas e pensadas para oferecer os nutrientes e vitaminas que seu corpo precisa para começar bem o dia.
+                    </div>
+                </details>
+
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">As receitas servem para a família toda?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Com certeza! São ideias que agradam adultos e crianças, com ingredientes acessíveis e muito sabor.
+                    </div>
+                </details>
+                
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">As receitas são fáceis de fazer?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        SIM! A maioria das receitas é simples, com ingredientes acessíveis e instruções claras, perfeitas para o dia a dia corrido.
+                    </div>
+                </details>
+
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">Preciso saber cozinhar para aproveitar?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Não! As receitas foram pensadas para todos os níveis de habilidade na cozinha - inclusive iniciantes.
+                    </div>
+                </details>
+
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">Tem lista de ingredientes acessíveis?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Sim. A nutri priorizou ingredientes que você encontra com facilidade em mercados comuns, sem precisar de produtos caros ou raros.
+                    </div>
+                </details>
+
+                <details class="group bg-brand-darkOlive border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-brand-cream hover:bg-white/5 transition-colors select-none">
+                        <span class="text-base md:text-lg">Vou precisar de batedeira ou utensílios especiais?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 ml-4"><i class="fas fa-chevron-down text-brand-orange"></i></span>
+                    </summary>
+                    <div class="text-brand-cream/90 p-5 pt-2 leading-relaxed border-t border-white/5 bg-black/10 text-sm md:text-base">
+                        Não! As receitas foram pensadas para o dia a dia, usando utensílios simples que você já tem em casa. Como colher, garfo, liquidificador e frigideira.
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-12 text-center pb-12">
+                <a href="#oferta" class="w-full md:w-auto inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-5 px-12 rounded-full text-lg md:text-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all uppercase">
+                    Quero as Receitas Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-darkOlive border-t border-brand-olive py-10 text-center text-sm text-brand-cream/50">
+        <p class="mb-2">&copy; 2024 - 200 Cafés da Manhã de Nutri. Todos os direitos reservados.</p>
+        <p class="text-xs">Pirataria é crime.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carouselTrack');
+            const container = document.getElementById('carouselContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let autoPlayInterval;
+
+            function scrollCarousel(direction) {
+                const itemWidth = track.querySelector('.snap-center').offsetWidth; 
+                const scrollAmount = direction === 'left' ? -itemWidth : itemWidth;
+                
+                // Verifica o fim do scroll para "voltar" ao inicio (loop visual simplificado)
+                if (direction === 'right' && (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10)) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(() => {
+                    scrollCarousel('right');
+                }, 3000); // 3 segundos
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+
+            // Inicia
+            startAutoPlay();
+
+            // Pausa na interação
+            container.addEventListener('mouseenter', stopAutoPlay);
+            container.addEventListener('touchstart', stopAutoPlay);
+
+            // Retoma ao sair
+            container.addEventListener('mouseleave', startAutoPlay);
+            container.addEventListener('touchend', startAutoPlay);
+
+            // Botões
+            prevBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                scrollCarousel('left');
+            });
+
+            nextBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                scrollCarousel('right');
+            });
+        });
+    </script>
+
+</body>
+</html>
